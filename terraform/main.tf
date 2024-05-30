@@ -10,7 +10,7 @@ module "ec2_instance" {
   create_iam_instance_profile = var.create_iam_instance_profile
   iam_role_description = "SSM Role for accessing EC2 instance"
 
-#   tags = {
+#   tag = {
 #     terraform   = "true"
 #     owner       = "papila.ghising"
 #     silo        = "intern"
