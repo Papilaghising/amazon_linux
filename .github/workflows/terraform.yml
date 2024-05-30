@@ -36,7 +36,7 @@ jobs:
       - name: Plan Terraform Changes
         run: |
           cd terraform
-          terraform plam-n -var-file=vars.tfvars 
+          terraform plan -var-file=vars.tfvars 
 
       - name: Apply Terraform Changes
         run: |
