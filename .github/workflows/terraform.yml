@@ -43,7 +43,7 @@ jobs:
           cd terraform
           terraform apply -var-file=vars.tfvars -auto-approve
 
-      - name: Destroy Terraform Changes
-        run: |
-          cd terraform
-          terraform destroy -var-file=vars.tfvars -auto-approve
+      # - name: Destroy Terraform Changes
+      #   run: |
+      #     cd terraform
+      #     terraform destroy -var-file=vars.tfvars -auto-approve
