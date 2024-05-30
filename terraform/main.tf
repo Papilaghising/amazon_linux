@@ -14,6 +14,6 @@ module "ec2_instance" {
 #     terraform   = "true"
 #     owner       = "papila.ghising"
 #     silo        = "intern"
-#     project     = "amazon_linux"
+#     project     = "amazon_linux2"
 #   }
 }
