@@ -36,9 +36,9 @@ jobs:
       - name: Plan Terraform Changes
         run: |
           cd terraform
-          terraform plan -var-file=vars.tfvars 
+          terraform plan -var-file=vars.tfvars -auto-approve
 
       - name: Apply Terraform Changes
         run: |
           cd terraform
-          terraform apply -var-file=vars.tfvars 
+          terraform apply -var-file=vars.tfvars -auto-approve
