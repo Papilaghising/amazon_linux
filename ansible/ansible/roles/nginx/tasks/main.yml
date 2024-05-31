@@ -11,16 +11,25 @@
 #     src: nginx.j2
 #     dest: /etc/nginx/sites-enabled/default
 
-- name: Install nginx on Amazon Linux 2
+- name: Install EPEL repository
+  ansible.builtin.yum:
+    name: epel-release
+    state: present
+
+- name: Update the repository
+  ansible.builtin.yum:
+    name: '*'
+    state: latest
+    exclude: epel-release
+
+- name: Install NGINX Open Source
   ansible.builtin.yum:
     name: nginx
-    state: latest
-    update_cache: yes
-    update_cache_retries: 0
-    installroot: /
-    disable_excludes: main
+    state: present
 
-- name: Copy nginx configuration file
+
+- name: Copy NGINX configuration file
   ansible.builtin.template:
     src: nginx.j2
     dest: /etc/nginx/nginx.conf
+  notify: reload nginx
