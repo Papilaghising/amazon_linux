@@ -8,6 +8,7 @@ module "ec2_instance" {
   vpc_security_group_ids      = var.sg_id
   subnet_id                   = var.subnet_id
   iam_instance_profile        = "intern-ujwal"
+  associate_public_ip_address = true
   #create_iam_instance_profile = var.create_iam_instance_profile
   iam_role_description        = "SSM Role for accessing EC2 instance"
   user_data = file("user_data.sh")
