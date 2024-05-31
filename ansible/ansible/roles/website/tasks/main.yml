@@ -1,0 +1,32 @@
+- name: Install nodejs
+  ansible.builtin.apt:
+    name: nodejs
+    state: latest
+    update_cache: true
+
+- name: Install npm
+  ansible.builtin.apt:
+    name: npm
+    state: latest
+    update_cache: true
+
+- name: Install pm2
+  npm:
+    name: pm2
+    global: yes
+
+- name: Copy Node.js application files
+  copy:
+      src: /home/papila/dynamic-nodejs-app
+      dest: /var/dynamic-nodejs-app
+      remote_src: false
+
+- name: Install dependencies
+  npm:
+    path: /var/dynamic-nodejs-app/dynamic-nodejs-app
+
+- name: Start the app with pm2
+  command: pm2 start -f app.js
+  args:
+    chdir: /var/dynamic-nodejs-app/dynamic-nodejs-app
+  notify: Restart nginx

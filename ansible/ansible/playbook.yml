@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: true
+  gather_facts: true
+  roles:
+    - nginx
+    - website
+  vars:
+    ansible_user: ubuntu

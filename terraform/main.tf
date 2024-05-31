@@ -8,12 +8,6 @@ module "ec2_instance" {
   vpc_security_group_ids      = var.sg_id
   subnet_id                   = var.subnet_id
   create_iam_instance_profile = var.create_iam_instance_profile
-  iam_role_description = "SSM Role for accessing EC2 instance"
-
-#   tag = {
-#     terraform   = "true"
-#     owner       = "papila.ghising"
-#     silo        = "intern"
-#     project     = "amazon_linux2"
-#   }
+  iam_role_description        = "SSM Role for accessing EC2 instance"
+  user_data = file("${path.module/user_data.sh}")
 }
