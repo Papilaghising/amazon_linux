@@ -16,5 +16,5 @@ unzip /var/ansible.zip -d /var/ansible
 # sudo cp -r /home/papila/ansible/* /usr/share/nginx/html/
 
 sleep 30
-sudo ansible-playbook -i /home/papila/amazon-linux2/ansible/ansible/aws_ec2.yml /home/papila/amazon-linux2/ansible/ansible/playbook.yml
+sudo ansible-playbook -i /var/ansible/ansible/ansible/aws_ec2.yml /var/ansible/ansible/ansible/playbook.yml
               
