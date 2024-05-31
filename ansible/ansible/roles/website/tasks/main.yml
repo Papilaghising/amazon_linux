@@ -15,11 +15,6 @@
     name: pm2
     global: yes
 
-# - name: Copy Node.js application files
-#   copy:
-#       src: /var/ansible/ansible/app
-#       dest: /var/dynamic-nodejs-app
-#       remote_src: false
 
 - name: Install dependencies
   npm:
