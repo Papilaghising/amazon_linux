@@ -18,10 +18,10 @@
 
 - name: Install dependencies
   npm:
-    path: /var/ansible/ansible/app/dynamic-nodejs-app/dynamic-nodejs-app
+    path: /var/ansible/ansible/ansible/app/dynamic-nodejs-app/dynamic-nodejs-app
 
 - name: Start the app with pm2
   command: pm2 start -f app.js
   args:
-    chdir: /var/ansible/ansible/dynamic-nodejs-app/dynamic-nodejs-app
+    chdir: /var/ansible/ansible/ansible/dynamic-nodejs-app/dynamic-nodejs-app
   notify: Restart nginx
