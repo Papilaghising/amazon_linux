@@ -12,6 +12,7 @@ module "ec2_instance" {
   #create_iam_instance_profile = var.create_iam_instance_profile
   iam_role_description        = "SSM Role for accessing EC2 instance"
   user_data = file("user_data.sh")
+  user_data_replace_on_change = true
 }
 
 module "s3_bucket" {
