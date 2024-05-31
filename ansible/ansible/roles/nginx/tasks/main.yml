@@ -1,12 +1,26 @@
-- name: Install nginx
-  ansible.builtin.apt:
+# - name: Install nginx
+#   ansible.builtin.yum:
+#     name: nginx
+#     state: latest
+#     update_cache: true
+
+
+
+# - name: copy configuration file
+#   ansible.builtin.template:
+#     src: nginx.j2
+#     dest: /etc/nginx/sites-enabled/default
+
+- name: Install nginx on Amazon Linux 2
+  ansible.builtin.yum:
     name: nginx
     state: latest
-    update_cache: true
+    update_cache: yes
+    update_cache_retries: 0
+    installroot: /
+    disable_excludes: main
 
-
-
-- name: copy configuration file
+- name: Copy nginx configuration file
   ansible.builtin.template:
     src: nginx.j2
-    dest: /etc/nginx/sites-enabled/default
+    dest: /etc/nginx/nginx.conf
