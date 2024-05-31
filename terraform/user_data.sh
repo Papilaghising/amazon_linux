@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo yum install  ansible2
+sudo amazon-linux-extras install  ansible2 -y
 # Install  unzip
 sudo yum install  unzip  -y
 
