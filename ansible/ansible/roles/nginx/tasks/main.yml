@@ -5,7 +5,8 @@
     update_cache: true
 
 
+
 - name: copy configuration file
   ansible.builtin.template:
-    src: nodejs-app.conf.j2
+    src: nginx.j2
     dest: /etc/nginx/sites-enabled/default
