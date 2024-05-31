@@ -9,5 +9,5 @@ module "ec2_instance" {
   subnet_id                   = var.subnet_id
   create_iam_instance_profile = var.create_iam_instance_profile
   iam_role_description        = "SSM Role for accessing EC2 instance"
-  user_data = file("${path.module/user_data.sh}")
+  user_data = file("user_data.sh")
 }
