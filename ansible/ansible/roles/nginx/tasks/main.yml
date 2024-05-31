@@ -1,31 +1,5 @@
-# - name: Install nginx
-#   ansible.builtin.yum:
-#     name: nginx
-#     state: latest
-#     update_cache: true
-
-
-
-# - name: copy configuration file
-#   ansible.builtin.template:
-#     src: nginx.j2
-#     dest: /etc/nginx/sites-enabled/default
-
-- name: Install EPEL repository
-  ansible.builtin.yum:
-    name: epel-release
-    state: present
-
-- name: Update the repository
-  ansible.builtin.yum:
-    name: '*'
-    state: latest
-    exclude: epel-release
-
-- name: Install NGINX Open Source
-  ansible.builtin.yum:
-    name: nginx
-    state: present
+- name: Install NGINX using Amazon Linux Extras
+  ansible.builtin.command: amazon-linux-extras install nginx1.12
 
 
 - name: Copy NGINX configuration file
