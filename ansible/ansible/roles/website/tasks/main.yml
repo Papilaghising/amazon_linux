@@ -1,27 +1,9 @@
-- name: Install nodejs
-  ansible.builtin.apt:
-    name: nodejs
-    state: latest
-    update_cache: true
-
-- name: Install npm
-  ansible.builtin.apt:
-    name: npm
-    state: latest
-    update_cache: true
-
-- name: Install pm2
-  npm:
-    name: pm2
-    global: yes
+- name : install flask
+  command: pip install Flask
 
 
-- name: Install dependencies
-  npm:
-    path: /var/ansible/ansible/ansible/app/dynamic-nodejs-app/dynamic-nodejs-app
-
-- name: Start the app with pm2
-  command: pm2 start -f app.js
+- name: Start the app 
+  command: python app.py
   args:
-    chdir: /var/ansible/ansible/ansible/dynamic-nodejs-app/dynamic-nodejs-app
+    chdir: /var/ansible/ansible/ansible/app
   notify: Restart nginx
