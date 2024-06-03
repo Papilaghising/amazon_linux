@@ -15,8 +15,8 @@
     src: /var/ansible/ansible/index.html
     dest: /usr/share/nginx/html/index.html
     remote_src: yes
-
-- name: Restart nginx
-  service:
-    name: nginx
-    state: restarted
+  notify: Restart nginx
+# - name: Restart nginx
+#   service:
+#     name: nginx
+#     state: restarted
