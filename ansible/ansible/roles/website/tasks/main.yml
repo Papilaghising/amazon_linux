@@ -1,3 +1,13 @@
+- name: Ensure Python 3 is installed
+  yum:
+    name: python3
+    state: present
+
+- name: Ensure pip3 is installed
+  command: python3 -m ensurepip
+  args:
+    creates: /usr/local/bin/pip3
+
 - name : create virtual env
   command: python3 -m venv venv
   args:
