@@ -1,0 +1,22 @@
+- name: enable NGINX 
+  ansible.builtin.command: amazon-linux-extras enable nginx1  
+
+
+- name: install nginx
+  ansible.builtin.yum:
+    pkg:
+     - nginx
+    state: present
+    update_cache: true
+
+
+- name: Copy new index.html file
+  copy:
+    src: /var/ansible/ansible/index.html
+    dest: /usr/share/nginx/html/index.html
+    remote_src: yes
+  notify: Restart nginx
+# - name: Restart nginx
+#   service:
+#     name: nginx
+#     state: restarted

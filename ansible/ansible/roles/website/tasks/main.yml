@@ -1,0 +1,23 @@
+- name: Ensure Python 3 is installed
+  yum:
+    name: python3
+    state: present
+
+- name: Ensure pip3 is installed
+  command: python3 -m ensurepip
+  args:
+    creates: /usr/local/bin/pip3
+
+- name : create virtual env
+  command: python3 -m venv venv
+  args:
+    chdir: /var/ansible/ansible/app
+
+- name: Install specified python requirements
+  ansible.builtin.pip:
+    requirements: /var/ansible/ansible/app/requirements.txt
+    virtualenv_command: source /var/ansible/ansible/app/venv/bin/activate
+
+
+- name: Start the app
+  command: /var/ansible/ansible/app/venv/bin/python /var/ansible/ansible/app/app.py

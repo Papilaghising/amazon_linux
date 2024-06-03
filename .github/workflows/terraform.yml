@@ -1,0 +1,78 @@
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - pipeline  
+permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1 
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-session-token: ${{ secrets.SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Initialize Terraform
+        run: |
+          cd terraform
+          terraform init
+        
+      - name: Plan Terraform Changes
+        run: |
+          cd terraform
+          terraform plan -var-file=vars.tfvars 
+
+      - name: Apply Terraform Changes
+        run: |
+          cd terraform
+          terraform apply -var-file=vars.tfvars -auto-approve
+
+      # - name: Destroy Terraform Changes
+      #   run: |
+      #     cd terraform
+      #     terraform destroy -var-file=vars.tfvars -auto-approve
+
+
+  upload:
+    needs: terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_KEY }}
+          aws-session-token: ${{ secrets.SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Zip  files
+        run: |
+          zip -r ansible.zip . -x ".git/*" -x ".github/*"
+
+      - name: Upload ZIP to S3
+        run: |
+          aws s3 cp ansible.zip s3://ghising-s3-bucket/   
+
+
+
+
