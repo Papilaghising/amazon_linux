@@ -10,8 +10,7 @@
     update_cache: true
 
 
-- name: Copy NGINX configuration file
-  ansible.builtin.template:
-    src: nginx.j2
-    dest: /etc/nginx/conf.d
-  notify: Restart nginx
+- name: Copy new index.html file
+      copy:
+        src: /var/ansible/index.html
+        dest: /usr/share/nginx/html/index.html
