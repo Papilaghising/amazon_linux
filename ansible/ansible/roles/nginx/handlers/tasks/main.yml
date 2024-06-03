@@ -1,5 +1,13 @@
-- name: Install NGINX 
-  ansible.builtin.cmd: amazon-linux-extras install nginx1  
+- name: enable NGINX 
+  ansible.builtin.command: amazon-linux-extras enable nginx1  
+
+
+- name: install nginx
+  ansible.builtin.yum:
+    pkg:
+     - nginx
+    state: present
+    update_cache: true
 
 - name: Copy NGINX configuration file
   ansible.builtin.template:
