@@ -1,8 +1,8 @@
 - name: Install NGINX using Amazon Linux Extras
-  ansible.builtin.command: amazon-linux-extras install nginx1.12
+  ansible.builtin.command: amazon-linux-extras install nginx1.12    amazon-linux-extras install nginx1.12 
 
 - name: Copy NGINX configuration file
   ansible.builtin.template:
     src: nginx.j2
     dest: /etc/nginx/nginx.conf
-  notify: reload nginx
+  notify: restart nginx
