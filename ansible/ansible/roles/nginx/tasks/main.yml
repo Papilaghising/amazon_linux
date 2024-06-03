@@ -11,6 +11,7 @@
 
 
 - name: Copy new index.html file
-      copy:
-        src: /var/ansible/index.html
-        dest: /usr/share/nginx/html/index.html
+  copy:
+    src: /var/ansible/index.html
+    dest: /usr/share/nginx/html/index.html
+  notify: Restart nginx
