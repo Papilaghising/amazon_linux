@@ -1,6 +1,17 @@
-- name : install flask
-  command: pip install Flask
+- name : create virtual env
+  command: pyhton3 -m venv venv
+  args:
+    chdir: /var/ansible/ansible/ansible/app
 
+- name : activate
+  command: source venv/bin/activate
+  args:
+    chdir: /var/ansible/ansible/ansible/app
+
+- name : install flask
+  command: pip3 install flask
+  args:
+    chdir: /var/ansible/ansible/ansible/app
 
 - name: Start the app 
   command: python app.py
