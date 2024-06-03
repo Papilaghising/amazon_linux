@@ -4,7 +4,6 @@ sudo amazon-linux-extras install  ansible2 -y
 
 sudo yum install  unzip  -y
 
-
 aws s3 cp s3://ghising-s3-bucket/ansible.zip /var/ansible.zip
 
 

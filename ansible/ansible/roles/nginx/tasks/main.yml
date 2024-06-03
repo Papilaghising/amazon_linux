@@ -9,6 +9,7 @@
     state: present
     update_cache: true
 
+
 - name: Copy NGINX configuration file
   ansible.builtin.template:
     src: nginx.j2
