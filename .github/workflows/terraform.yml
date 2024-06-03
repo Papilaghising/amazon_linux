@@ -38,15 +38,15 @@ jobs:
           cd terraform
           terraform plan -var-file=vars.tfvars 
 
-      # - name: Apply Terraform Changes
-      #   run: |
-      #     cd terraform
-      #     terraform apply -var-file=vars.tfvars -auto-approve
-
-      - name: Destroy Terraform Changes
+      - name: Apply Terraform Changes
         run: |
           cd terraform
-          terraform destroy -var-file=vars.tfvars -auto-approve
+          terraform apply -var-file=vars.tfvars -auto-approve
+
+      # - name: Destroy Terraform Changes
+      #   run: |
+      #     cd terraform
+      #     terraform destroy -var-file=vars.tfvars -auto-approve
 
 
   upload:
@@ -76,6 +76,3 @@ jobs:
 
 
 
-      # - name: Upload to S3
-      #   run: |
-      #     aws s3 cp . s3://ghising_s3-bucket --exclude ".git/*" --recursive
